@@ -27,6 +27,7 @@ const Header = () => {
         navigate("/");
       }
     });
+    // return () => unsubscribe();
   }, []);
 
   const handleSignOut = () => {
@@ -55,7 +56,7 @@ const Header = () => {
           />
           <button
             onClick={handleSignOut}
-            className="text-black font-extrabold "
+            className="text-white font-extrabold "
           >
             SignOut
           </button>
