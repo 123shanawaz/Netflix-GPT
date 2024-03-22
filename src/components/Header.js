@@ -4,6 +4,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -30,6 +31,10 @@ const Header = () => {
     // return () => unsubscribe();
   }, []);
 
+  const HandleGPTsearch = () => {
+    dispatch(toggleGptSearchView());
+  };
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -48,10 +53,16 @@ const Header = () => {
       />
 
       {user && (
-        <div className="">
+        <div className="flex p-2">
+          <button
+            onClick={HandleGPTsearch}
+            className="py-2 px-4 mx-4 my-2 text-white rounded-lg bg-purple-800"
+          >
+            GPT Search
+          </button>
           <img
-            className="w-12 h-12 m-2"
-            src={user?.photoURL}
+            className="w-12 h-12"
+            src="https://occ-0-6247-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABdpkabKqQAxyWzo6QW_ZnPz1IZLqlmNfK-t4L1VIeV1DY00JhLo_LMVFp936keDxj-V5UELAVJrU--iUUY2MaDxQSSO-0qw.png?r=e6e"
             alt="logout-logo"
           />
           <button
